@@ -1,0 +1,157 @@
+:root {
+  --bg-primary: rgb(135, 206, 235);
+  --bg-secondary: red;
+  --border: #b0b0b0;
+  --border-1: #999999b5;
+  --shadow: hsla(0, 0%, 20%, 0.113);
+  --bg-red: rgba(238, 50, 50, 0.822);
+}
+
+.container {
+  min-height: 1.5em;
+  width: 20em;
+  border: 0.05em solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  outline: none;
+  position: relative;
+  pointer-events: all;
+  cursor: pointer;
+}
+.container:focus {
+  border-color: var(--bg-primary);
+}
+.container:out-of-range {
+  border-color: var(--bg-primary);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.value {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  text-transform: capitalize;
+}
+.placeholder {
+  color: var(--border-1);
+}
+.divider {
+  background-color: var(--border);
+  align-self: stretch;
+  width: 0.05em;
+}
+
+.caret {
+  translate: 0 25%;
+  border: 0.25em solid transparent;
+  border-top-color: var(--border);
+}
+.options {
+  width: 100%;
+  max-height: 250px;
+  overflow-y: scroll;
+  border: 1px solid var(--border);
+  background-color: white;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 0;
+  box-shadow: 0 0 10px var(--shadow);
+  visibility: collapse;
+  z-index: 10;
+}
+
+.options::-webkit-scrollbar {
+  width: 3px;
+}
+.options::-webkit-scrollbar-track {
+  background-color: var(--shadow);
+}
+.options::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+}
+.popover_show {
+  animation: popOver 120ms linear forwards;
+}
+
+@keyframes popOver {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: fit-content;
+    visibility: visible;
+  }
+}
+.option {
+  min-height: 2em;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.4em 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 50ms ease-in;
+}
+.option:hover {
+  background-color: var(--bg-primary);
+}
+
+.highlighted {
+  background-color: var(--bg-primary);
+  color: white;
+}
+
+.selected_data {
+  display: flex;
+  min-width: 60px;
+  align-items: center;
+  border: 0.05em solid var(--border-1);
+  border-radius: 0.35em;
+  padding-left: 0.3em;
+  gap: 0.25em;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  overflow: hidden;
+}
+.remove_btn {
+  width: 20px;
+  justify-self: end;
+}
+.option-badge:hover {
+  background-color: var(--bg-red);
+}
+.remove_btn:hover {
+  background-color: var(--bg-red);
+  color: white;
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.selected_animated {
+    overflow: hidden;
+  animation: selectedAnimation 75ms ease-in forwards;
+}
+
+@keyframes selectedAnimation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
